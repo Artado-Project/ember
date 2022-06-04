@@ -1,0 +1,5 @@
+src/kernel.o
+src/Ember.iso
+src/boot.o
+src/iso/boot/ember.bin
+.idea/*
