@@ -1,5 +1,5 @@
 src/kernel.o
-src/Ember.iso
+src/Arus.iso
 src/boot.o
-src/iso/boot/ember.bin
+src/iso/boot/arus.bin
 .idea/*
