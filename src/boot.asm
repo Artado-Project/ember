@@ -24,12 +24,12 @@ _start:
 	extern kernel_main
 	call kernel_main
 
-	cli
+   cli
 .hang:	hlt
 	jmp .hang
 .end:
 
-extern gdt_flush
+global gdt_flush
 
 gdt_flush:
    mov eax, [esp+4]
@@ -44,3 +44,12 @@ gdt_flush:
    jmp 0x08:.flush
 .flush:
    ret
+
+global idt_flush
+
+idt_flush:
+   mov eax, [esp+4]
+   lidt [eax]
+   ret
+
+%include "interrupt.asm"
