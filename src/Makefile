@@ -1,12 +1,18 @@
+GPP=i686-elf-g++
+AS=nasm
+GCC=i686-elf-gcc
+CFLAGS=-ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti
+QEMU=qemu-system-i386
+
 build:
-	i686-elf-g++ -c kernel.cpp -o kernel.o -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti
-	nasm -felf32 boot.asm -o boot.o
-	i686-elf-gcc -T link.ld -o iso/boot/arus.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+	$(GPP) -c kernel.cpp -o kernel.o $(CFLAGS)
+	$(AS) -felf32 boot.asm -o boot.o
+	$(GCC) -T link.ld -o iso/boot/arus.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
 	grub-file --is-x86-multiboot iso/boot/arus.bin
 	grub-mkrescue -o Arus.iso iso
 
-run:
-	qemu-system-i386 Arus.iso
+run: # remove -d int to remove debug output
+	$(QEMU) Arus.iso -d int
 
 clean:
 	rm -f kernel.o boot.o Arus.iso iso/boot/arus.bin
