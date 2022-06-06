@@ -1,3 +1,4 @@
+#pragma once
 #include <stdint.h>
 
 void outb(uint16_t port, uint8_t val)
@@ -39,4 +40,17 @@ uint32_t inl(uint16_t port)
 void io_wait(void)
 {
     asm volatile ("outb %%al, $0x80" : : "a"(0));
+}
+
+void memcpy(uint8_t *dest, const uint8_t *src, uint32_t len)
+{
+    const uint8_t *sp = (const uint8_t *)src;
+    uint8_t *dp = (uint8_t *)dest;
+    for(; len != 0; len--) *dp++ = *sp++;
+}
+
+void memset(uint8_t *dest, uint8_t val, uint32_t len)
+{
+    uint8_t *temp = (uint8_t *)dest;
+    for ( ; len != 0; len--) *temp++ = val;
 }
