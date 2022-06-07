@@ -33,4 +33,5 @@ extern "C" void isr_handler(registers_t regs)
   terminal::print(", errno: ");
   terminal::print_dec(regs.err_code);
   terminal::print("\n");
+  asm volatile ("cli");
 }

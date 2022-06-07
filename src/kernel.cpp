@@ -19,9 +19,6 @@ extern "C" void kernel_main(void)
   terminal::setcolor(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
   terminal::print("Welcome to Arus!\n");
   terminal::print("Version 1, Build 0.0.1\n");
-  asm volatile ("int $0x3"); // NOT WORKING
-  // Excepted output:
-  //   recieved interrupt: 3, errno: 0
-  // Got output:
-  //   a lot of GPF errors
+  asm volatile ("int $0x3");
+  asm volatile ("int $0x4");
 }
