@@ -53,3 +53,5 @@ idt_flush:
    ret
 
 %include "interrupt.asm"
+
+%include "irq.asm"
