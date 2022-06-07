@@ -1,5 +1,5 @@
 # Arus
-A hobby OS written in C++
+A modern and user-friendly operating system  written in C++
 
 ![Arus Logo](https://raw.githubusercontent.com/ardatdev/arus/main/assets/ember_noback_cropped_150px.png)
 
