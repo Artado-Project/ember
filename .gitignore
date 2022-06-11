@@ -1,5 +1,4 @@
-src/kernel.o
 src/Arus.iso
-src/boot.o
+src/*.o
 src/iso/boot/arus.bin
 .idea/*

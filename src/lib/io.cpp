@@ -1,5 +1,5 @@
-#pragma once
 #include <stdint.h>
+#include <io.hpp>
 
 void outb(uint16_t port, uint8_t val)
 {

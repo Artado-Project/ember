@@ -1,28 +1,12 @@
-#pragma once
 #include <stdint.h>
-#include "io.hpp"
-#include "isr.hpp"
+#include <dt.hpp>
+#include <io.hpp>
+#include <isr.hpp>
 
 extern "C" void gdt_flush(uint32_t);
 extern "C" void idt_flush(uint32_t);
 
 namespace gdt {
-struct gdt_entry_struct {
-  uint16_t limit_low;
-  uint16_t base_low;
-  uint8_t base_middle;
-  uint8_t access;
-  uint8_t granularity;
-  uint8_t base_high;
-} __attribute__((packed));
-typedef struct gdt_entry_struct gdt_entry_t;
-
-struct gdt_ptr_struct {
-  uint16_t limit;
-  uint32_t base;
-} __attribute__((packed));
-typedef struct gdt_ptr_struct gdt_ptr_t;
-
 gdt_entry_t gdt_entries[7];
 gdt_ptr_t gdt_ptr;
 
@@ -56,23 +40,6 @@ static void init_gdt() {
 } // namespace gdt
 
 namespace idt {
-struct idt_entry_struct
-{
-   uint16_t base_lo;
-   uint16_t sel;
-   uint8_t  always0;
-   uint8_t  flags;
-   uint16_t base_hi;
-} __attribute__((packed));
-typedef struct idt_entry_struct idt_entry_t;
-
-struct idt_ptr_struct
-{
-   uint16_t limit;
-   uint32_t base;
-} __attribute__((packed));
-typedef struct idt_ptr_struct idt_ptr_t;
-
 idt_entry_t idt_entries[256];
 idt_ptr_t   idt_ptr;
 

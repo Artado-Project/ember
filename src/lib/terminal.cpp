@@ -1,9 +1,9 @@
-#pragma once
-#include "io.hpp"
-#include "string.hpp"
-#include "vga.hpp"
+#include <io.hpp>
+#include <string.hpp>
+#include <vga.hpp>
 #include <stddef.h>
 #include <stdint.h>
+#include <terminal.hpp>
 
 namespace terminal {
 static const size_t VGA_WIDTH = 80;
@@ -43,7 +43,7 @@ void putentryat(char c, uint8_t color, size_t x, size_t y) {
 }
 
 // Updates the hardware cursor.
-static void move_cursor() {
+void move_cursor() {
   // The screen is 80 characters wide...
   uint16_t cursorLocation = cursor_y * 80 + cursor_x;
   outb(0x3D4, 14); // Tell the VGA board we are setting the high cursor byte.
@@ -53,7 +53,7 @@ static void move_cursor() {
 }
 
 // Scrolls the text on the screen up by one line.
-static void scroll() {
+void scroll() {
 
   // Get a space character with the default colour attributes.
   uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);

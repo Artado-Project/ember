@@ -1,5 +1,5 @@
-#include "lib/terminal.hpp"
-#include "lib/dt.hpp"
+#include <terminal.hpp>
+#include <dt.hpp>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
