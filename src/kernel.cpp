@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <timer.hpp>
 
 extern "C" void kernel_main(void)
 {
@@ -21,4 +22,5 @@ extern "C" void kernel_main(void)
   terminal::print("Version 1, Build 0.0.1\n");
   asm volatile ("int $0x3");
   asm volatile ("int $0x4");
+  init_timer(50);
 }
