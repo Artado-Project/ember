@@ -20,6 +20,9 @@ extern "C" void kernel_main(void)
   terminal::setcolor(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
   terminal::print("Welcome to Arus!\n");
   terminal::print("Version 1, Build 0.0.1\n");
+  
+  asm volatile("sti");
+
   asm volatile ("int $0x3");
   asm volatile ("int $0x4");
   init_timer(50);
