@@ -10,11 +10,11 @@
 extern "C" void kernel_main(void)
 {
   serial::init();
-  serial::write_str_serial("[knl] Initializing\n");
-  serial::write_str_serial("[dts] Initializing\n");
+  serial::log("knl", "Initializing");
+  serial::log("dts", "Initializing");
   init_descriptor_tables();
   asm volatile ("sti");
-  serial::write_str_serial("[tty] Initializing\n");
+  serial::log("tty", "Initializing");
   terminal::initialize();
 
   // Ember logo
@@ -27,11 +27,11 @@ extern "C" void kernel_main(void)
   terminal::setcolor(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
   terminal::print("Welcome to Arus!\n");
   terminal::print("Version 1, Build 0.0.1\n");
-  serial::write_str_serial("[pit] Initializing\n");
+  serial::log("pit", "Initializing");
   timer::init(100);
-  serial::write_str_serial("[kbd] Initializing\n");
+  serial::log("kbd", "Initializing");
   keyboard::init();
-  serial::write_str_serial("[knl] Initialized\n");
+  serial::log("knl", "Initialized");
   for (;;){
     asm volatile("hlt");
   }
