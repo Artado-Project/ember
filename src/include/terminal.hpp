@@ -14,4 +14,5 @@ namespace terminal {
     void print(const char *data);
     void clear();
     void print_dec(uint32_t n);
+    void handle_backspace();
 }

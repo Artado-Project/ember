@@ -9,9 +9,6 @@ uint32_t tick = 0;
 static void timer_callback(registers_t *regs)
 {
    tick++;
-   terminal::print("Tick: ");
-   terminal::print_dec(tick);
-   terminal::print("\r");
 }
 
 void init_timer(uint32_t frequency)

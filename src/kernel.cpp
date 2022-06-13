@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <timer.hpp>
+#include <keyboard.hpp>
 
 extern "C" void kernel_main(void)
 {
@@ -26,6 +27,7 @@ extern "C" void kernel_main(void)
   asm volatile ("int $0x3");
   asm volatile ("int $0x4");
   init_timer(100);
+  init_keyboard();
   for (;;){
     asm volatile("hlt");
   }

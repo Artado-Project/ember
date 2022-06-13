@@ -10,6 +10,7 @@ static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
 int cursor_y = 0;
 int cursor_x = 0;
+int line_length[VGA_HEIGHT];
 uint8_t backColour = 0;
 uint8_t foreColour = 15;
 
@@ -90,9 +91,9 @@ void putchar(char c) {
   uint16_t attribute = attributeByte << 8;
   uint16_t *location;
 
-  // Handle a backspace, by moving the cursor back one space
-  if (c == 0x08 && cursor_x) {
-    cursor_x--;
+  // Handle a backspace
+  if (c == 0x08) {
+    handle_backspace();
   }
 
   // Handle a tab by increasing the cursor's X, but only to a point
@@ -108,6 +109,7 @@ void putchar(char c) {
 
   // Handle newline by moving cursor back to left and increasing the row
   else if (c == '\n') {
+    line_length[cursor_y] = cursor_x;
     cursor_x = 0;
     cursor_y++;
   }
@@ -121,6 +123,7 @@ void putchar(char c) {
   // Check if we need to insert a new line because we have reached the end
   // of the screen.
   if (cursor_x >= 80) {
+    line_length[cursor_y] = cursor_x;
     cursor_x = 0;
     cursor_y++;
   }
@@ -184,6 +187,21 @@ void print_dec(uint32_t n)
     c2[i--] = c[j++];
   }
   print(c2);
+}
+
+void handle_backspace(){
+  uint8_t attributeByte = (backColour << 4) | (foreColour & 0x0F);
+  uint16_t attribute = attributeByte << 8;
+  uint16_t *location;
+
+  if (cursor_x > 0) {
+    cursor_x--;
+  } else if (cursor_y > 0) {
+    cursor_y--;
+    cursor_x = line_length[cursor_y];
+  }
+  location = buffer + (cursor_y * 80 + cursor_x);
+  *location = ' ' | attribute;
 }
 
 } // namespace terminal
