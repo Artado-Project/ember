@@ -5,9 +5,12 @@
 #include <stdint.h>
 #include <timer.hpp>
 #include <keyboard.hpp>
+#include <serial.hpp>
 
 extern "C" void kernel_main(void)
 {
+  serial::init();
+  serial::write_str_serial("Arus has started\n");
   init_descriptor_tables();
   terminal::initialize();
 
