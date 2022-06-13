@@ -14,8 +14,8 @@ build:
 	grub-file --is-x86-multiboot iso/boot/arus.bin
 	grub-mkrescue -o Arus.iso iso
 
-run: # remove -d int to remove debug output
-	$(QEMU) Arus.iso -d int
+run: # add -d int to add debug output
+	$(QEMU) Arus.iso
 
 clean:
 	rm -f *.o Arus.iso iso/boot/arus.bin
