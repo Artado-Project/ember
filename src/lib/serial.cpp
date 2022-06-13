@@ -49,7 +49,7 @@ void write_serial(char data) {
    outb(COM1, data);
 }
  
-void write_str_serial(char *data) {
+void write_str_serial(const char *data) {
   for (size_t i = 0; i < strlen(data); i++)
     write_serial(data[i]);
 }
