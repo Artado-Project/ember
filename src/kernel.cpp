@@ -12,6 +12,7 @@ extern "C" void kernel_main(void)
   serial::init();
   serial::write_str_serial("Arus has started\n");
   init_descriptor_tables();
+  asm volatile ("sti");
   terminal::initialize();
 
   // Ember logo
