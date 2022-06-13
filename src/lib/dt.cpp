@@ -37,7 +37,7 @@ static void init_gdt() {
   gdt_set_gate(6, 0, 0xFFFFFFFF, 0xF6, 0xCF); // User mode stack segment
 
   gdt_flush((uint32_t)&gdt_ptr);
-  serial::write_str_serial("Initialized GDT.\n");
+  serial::write_str_serial("[gdt] Initialized\n");
 }
 } // namespace gdt
 
@@ -125,14 +125,15 @@ static void init_idt()
     idt_set_gate(47, (uint32_t)irq15, 0x08, 0x8E);
 
     idt_flush((uint32_t)&idt_ptr);
-    serial::write_str_serial("Initialized IDT.\n");
+    serial::write_str_serial("[idt] Initialized\n");
 }
 } // namespace idt
 
 void init_descriptor_tables()
 {
-  serial::write_str_serial("Initializing GDT...\n");
+  serial::write_str_serial("[gdt] Initializing\n");
   gdt::init_gdt();
-  serial::write_str_serial("Initializing IDT...\n");
+  serial::write_str_serial("[idt] Initializing\n");
   idt::init_idt();
+  serial::write_str_serial("[dts] Initialized\n");
 }

@@ -35,6 +35,6 @@ void init(uint32_t frequency)
    // Send the frequency divisor.
    outb(0x40, l);
    outb(0x40, h);
-   serial::write_str_serial("Initialized timer.\n");
+   serial::write_str_serial("[pit] Initialized\n");
 }
 } // namespace timer

@@ -58,6 +58,6 @@ static void keyboard_handler(registers_t *regs)
 void init(void)
 {
    register_interrupt_handler(33, &keyboard_handler);
-   serial::write_str_serial("Initialized keyboard.\n");
+   serial::write_str_serial("[kbd] Initialized\n");
 }
 } // namespace keyboard

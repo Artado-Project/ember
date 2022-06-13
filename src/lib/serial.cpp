@@ -53,4 +53,6 @@ void write_str_serial(const char *data) {
   for (size_t i = 0; i < strlen(data); i++)
     write_serial(data[i]);
 }
+
+// TODO: create a function for logs
 }

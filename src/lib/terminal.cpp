@@ -31,7 +31,7 @@ void initialize(void) {
       buffer[index] = vga::vga_entry(' ', color);
     }
   }
-  serial::write_str_serial("Initialized terminal.\n");
+  serial::write_str_serial("[tty] Initialized\n");
 }
 
 void setcolor(enum vga_color fore, enum vga_color back) {
