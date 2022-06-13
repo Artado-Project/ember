@@ -1,4 +1,6 @@
 #pragma once
 #include <stdint.h>
 
-void init_timer(uint32_t frequency);
+namespace timer{
+    void init(uint32_t frequency);
+}

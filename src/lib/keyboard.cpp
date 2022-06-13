@@ -3,6 +3,8 @@
 #include <io.hpp>
 #include <terminal.hpp>
 
+namespace keyboard
+{
 unsigned char keyboard_us[128] =
 {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	'9', '0', '-', '=', '\b', '\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',
@@ -52,7 +54,8 @@ static void keyboard_handler(registers_t *regs)
     }
 }
 
-void init_keyboard(void)
+void init(void)
 {
    register_interrupt_handler(33, &keyboard_handler);
 }
+} // namespace keyboard

@@ -26,8 +26,8 @@ extern "C" void kernel_main(void)
 
   asm volatile ("int $0x3");
   asm volatile ("int $0x4");
-  init_timer(100);
-  init_keyboard();
+  timer::init(100);
+  keyboard::init();
   for (;;){
     asm volatile("hlt");
   }

@@ -1,3 +1,5 @@
 #pragma once
 
-void init_keyboard(void);
+namespace keyboard {
+    void init(void);
+}

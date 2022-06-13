@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <io.hpp>
 
+namespace timer
+{
 uint32_t tick = 0;
 
 static void timer_callback(registers_t *regs)
@@ -12,7 +14,7 @@ static void timer_callback(registers_t *regs)
    tick++;
 }
 
-void init_timer(uint32_t frequency)
+void init(uint32_t frequency)
 {
    // Firstly, register our timer callback.
    register_interrupt_handler(32, &timer_callback);
@@ -32,4 +34,5 @@ void init_timer(uint32_t frequency)
    // Send the frequency divisor.
    outb(0x40, l);
    outb(0x40, h);
-} 
+}
+} // namespace timer
