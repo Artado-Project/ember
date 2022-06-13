@@ -34,6 +34,7 @@ unsigned char keyboard_us[128] =
 
 static void keyboard_handler(registers_t *regs)
 {
+    (void)regs; // `regs` is not used
     unsigned char scancode;
     scancode = inb(0x60);
     if (scancode & 0x80)
