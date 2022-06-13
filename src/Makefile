@@ -16,7 +16,7 @@ build:
 	grub-mkrescue -o Arus.iso iso
 
 run:
-	$(QEMU) $(QEMUFLAGS)
+	@$(QEMU) $(QEMUFLAGS)
 
 clean:
 	rm -f *.o Arus.iso iso/boot/arus.bin

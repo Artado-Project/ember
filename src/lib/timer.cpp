@@ -3,6 +3,7 @@
 #include <terminal.hpp>
 #include <stdint.h>
 #include <io.hpp>
+#include <serial.hpp>
 
 namespace timer
 {
@@ -34,5 +35,6 @@ void init(uint32_t frequency)
    // Send the frequency divisor.
    outb(0x40, l);
    outb(0x40, h);
+   serial::write_str_serial("Initialized timer.\n");
 }
 } // namespace timer

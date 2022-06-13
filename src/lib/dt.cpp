@@ -2,6 +2,7 @@
 #include <dt.hpp>
 #include <io.hpp>
 #include <isr.hpp>
+#include <serial.hpp>
 
 extern "C" void gdt_flush(uint32_t);
 extern "C" void idt_flush(uint32_t);
@@ -36,6 +37,7 @@ static void init_gdt() {
   gdt_set_gate(6, 0, 0xFFFFFFFF, 0xF6, 0xCF); // User mode stack segment
 
   gdt_flush((uint32_t)&gdt_ptr);
+  serial::write_str_serial("Initialized GDT.\n");
 }
 } // namespace gdt
 
@@ -123,11 +125,14 @@ static void init_idt()
     idt_set_gate(47, (uint32_t)irq15, 0x08, 0x8E);
 
     idt_flush((uint32_t)&idt_ptr);
+    serial::write_str_serial("Initialized IDT.\n");
 }
 } // namespace idt
 
 void init_descriptor_tables()
 {
+  serial::write_str_serial("Initializing GDT...\n");
   gdt::init_gdt();
+  serial::write_str_serial("Initializing IDT...\n");
   idt::init_idt();
 }

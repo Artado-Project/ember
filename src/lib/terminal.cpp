@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <terminal.hpp>
+#include <serial.hpp>
 
 namespace terminal {
 static const size_t VGA_WIDTH = 80;
@@ -30,6 +31,7 @@ void initialize(void) {
       buffer[index] = vga::vga_entry(' ', color);
     }
   }
+  serial::write_str_serial("Initialized terminal.\n");
 }
 
 void setcolor(enum vga_color fore, enum vga_color back) {
