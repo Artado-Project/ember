@@ -4,6 +4,7 @@ GCC=i686-elf-gcc
 CFLAGS=-ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti -I./include
 QEMU=qemu-system-i386
 SOURCES=kernel.cpp lib/*.cpp
+QEMUFLAGS=-drive file=Arus.iso,format=raw,index=0,media=disk -serial file:/dev/stdout
 
 build:
 	for file in $(SOURCES); do \
@@ -14,8 +15,8 @@ build:
 	grub-file --is-x86-multiboot iso/boot/arus.bin
 	grub-mkrescue -o Arus.iso iso
 
-run: # add -d int to add debug output
-	$(QEMU) Arus.iso
+run:
+	$(QEMU) $(QEMUFLAGS)
 
 clean:
 	rm -f *.o Arus.iso iso/boot/arus.bin
