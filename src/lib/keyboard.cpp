@@ -7,9 +7,9 @@
 
 namespace keyboard
 {
-int ginput = false;
+bool ginput = false;
 char lastchar = 0;
-int gotchar = false;
+bool gotchar = false;
 unsigned char scancode;
 
 unsigned char keyboard_us[128] =
