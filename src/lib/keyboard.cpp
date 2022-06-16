@@ -3,9 +3,15 @@
 #include <io.hpp>
 #include <terminal.hpp>
 #include <serial.hpp>
+#include <stdbool.h>
 
 namespace keyboard
 {
+int ginput = false;
+char lastchar = 0;
+int gotchar = false;
+unsigned char scancode;
+
 unsigned char keyboard_us[128] =
 {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	'9', '0', '-', '=', '\b', '\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',
@@ -38,20 +44,17 @@ unsigned char keyboard_us[128] =
 static void keyboard_handler(registers_t *regs)
 {
     (void)regs; // `regs` is not used
-    unsigned char scancode;
     scancode = inb(0x60);
-    if (scancode & 0x80)
-    {
-        // A key was released, do nothing for now.
-    }
-    else
-    {
-        char toprint[1];
-        toprint[0] = keyboard_us[scancode];
-        terminal::print(toprint); // TODO: don't let the terminal handle the
-                                  // backspace itself, because it allows to
-                                  // delete everything including messages 
-                                  // printed by the OS.
+    if (ginput) {
+        if (scancode & 0x80)
+        {
+            // A key was released, do nothing for now.
+        }
+        else
+        {
+            lastchar = keyboard_us[scancode];
+            gotchar = true;
+        }
     }
 }
 
@@ -59,5 +62,36 @@ void init(void)
 {
    register_interrupt_handler(33, &keyboard_handler);
    serial::log("kbd", "Initialized");
+}
+
+char getchar()
+{
+    lastchar = 0; // set last character to null character
+    ginput = true; // enable input
+    while (gotchar == false) io_wait(); // wait until key press
+    ginput = false; // disable input
+    gotchar = false; // set gotchar to false
+    return lastchar; // return the character
+}
+
+void input(unsigned int input_length, char *theinput)
+{
+    int last_position = input_length - 1;
+    int position = 0;
+    char character = 0;
+    while (character != '\n') { // until the user presses enter
+        character = getchar();
+        if (character == '\b') {
+            if (position != 0) {
+                theinput[position] = 0;
+                position--;
+                terminal::putchar(character);
+            }
+        } else if (position != last_position) {
+            if (character != '\n') theinput[position] = character;
+            position++;
+            terminal::putchar(character);
+        }
+    }
 }
 } // namespace keyboard

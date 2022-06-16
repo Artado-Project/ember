@@ -32,6 +32,11 @@ extern "C" void kernel_main(void)
   serial::log("kbd", "Initializing");
   keyboard::init();
   serial::log("knl", "Initialized");
+  terminal::print("> ");
+  char theinput[25];
+  keyboard::input(24, theinput);
+  terminal::print("You said this: ");
+  terminal::print(theinput);
   for (;;){
     asm volatile("hlt");
   }

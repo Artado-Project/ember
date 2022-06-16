@@ -12,6 +12,7 @@ namespace terminal {
     void putchar(char c);
     void write(const char *data, size_t size);
     void print(const char *data);
+    void print(char data);
     void clear();
     void print_dec(uint32_t n);
     void handle_backspace();

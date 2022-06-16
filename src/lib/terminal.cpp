@@ -144,6 +144,7 @@ void write(const char *data, size_t size) {
 }
 
 void print(const char *data) { write(data, strlen(data)); }
+void print(char data) { putchar(data); } // print is an alias to putchar if data is a char
 
 // Clears the screen, by copying lots of spaces to the framebuffer.
 void clear() {
