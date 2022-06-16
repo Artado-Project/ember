@@ -7,9 +7,11 @@ isr_t interrupt_handlers[256];
 extern "C" void isr_handler(registers_t regs)
 {
   terminal::print("recieved interrupt: ");
-  terminal::print_dec(regs.int_no);
-  terminal::print(", errno: ");
-  terminal::print_dec(regs.err_code);
+  terminal::print_hex(regs.int_no);
+  if (regs.err_code != 0) {
+    terminal::print(", errno: ");
+    terminal::print_hex(regs.err_code);
+  }
   terminal::print("\n");
   asm volatile ("cli");
 }

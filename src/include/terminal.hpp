@@ -16,4 +16,5 @@ namespace terminal {
     void clear();
     void print_dec(uint32_t n);
     void handle_backspace();
+    void print_hex(uint32_t n);
 }

@@ -37,6 +37,8 @@ extern "C" void kernel_main(void)
   keyboard::input(24, theinput);
   terminal::print("You said this: ");
   terminal::print(theinput);
+  terminal::print("\nTest interrupt:\n");
+  asm volatile ("int $0x13");
   for (;;){
     asm volatile("hlt");
   }
