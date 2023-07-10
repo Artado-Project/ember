@@ -1,10 +1,14 @@
 # Arus
 <p align="center">
 <img src="assets/arus_logo.png" width="256px"/><br/>
-A modern and user-friendly operating system written in C++
+A operating system and kernel written in C++ by Artado.
 <a href="https://discord.gg/t3T9NkHWsW"><img src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/></a>
 <a href="https://github.com/ardatdev/arus"><img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git"/></a>
 </p>
+
+## About Project
+Arus's development is stopped at the moment and we are not planning
+to work on it any time soon. But we'll continue to this project in the future.
 
 ## Compiling
 You need `grub`, `i686-elf-tools` and `nasm` installed.
