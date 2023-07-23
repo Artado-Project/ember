@@ -7,8 +7,7 @@ A operating system and kernel written in C++ by Artado.
 </p>
 
 ## About Project
-Arus's development is stopped at the moment and we are not planning
-to work on it any time soon. But we'll continue to this project in the future.
+Arus's development is stopped at the moment. But we'll continue to this project in the future.
 
 ## Compiling
 You need `grub`, `i686-elf-tools` and `nasm` installed.
