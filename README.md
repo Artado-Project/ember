@@ -1,7 +1,7 @@
 # Arus
 <p align="center">
 <img src="assets/arus_logo.png" width="256px"/><br/>
-A operating system and kernel written in C++ by Artado.
+A kernel written in C++ by Artado.
 <a href="https://discord.gg/WXCsr8zTN6"><img src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/></a>
 <a href="https://github.com/Artado-Project/arus"><img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git"/></a>
 </p>
