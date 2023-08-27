@@ -1,4 +1,4 @@
-# Arus
+# Ember
 <p align="center">
 <img src="assets/arus_logo.png" width="256px"/><br/>
 A kernel written in C++ by Artado.
@@ -7,7 +7,7 @@ A kernel written in C++ by Artado.
 </p>
 
 ## About Project
-Arus's development is stopped at the moment. But we'll continue to this project in the future.
+Ember's development is stopped at the moment. But we'll continue to this project in the future.
 
 ## Compiling
 You need `grub`, `i686-elf-tools` and `nasm` installed.
