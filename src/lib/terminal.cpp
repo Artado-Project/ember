@@ -6,6 +6,9 @@
 #include <terminal.hpp>
 #include <serial.hpp>
 
+using namespace serial;
+using namespace vga;
+
 namespace terminal {
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
@@ -23,15 +26,15 @@ uint16_t *buffer;
 void initialize(void) {
   row = 0;
   column = 0;
-  color = vga::vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
+  color = vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
   buffer = (uint16_t *)0xB8000;
   for (size_t y = 0; y < VGA_HEIGHT; y++) {
     for (size_t x = 0; x < VGA_WIDTH; x++) {
       const size_t index = y * VGA_WIDTH + x;
-      buffer[index] = vga::vga_entry(' ', color);
+      buffer[index] = vga_entry(' ', color);
     }
   }
-  serial::log("tty", "Initialized");
+  log("tty", "Initialized");
 }
 
 void setcolor(enum vga_color fore, enum vga_color back) {
@@ -42,7 +45,7 @@ void setcolor(enum vga_color fore, enum vga_color back) {
 
 void putentryat(char c, uint8_t color, size_t x, size_t y) {
   const size_t index = y * VGA_WIDTH + x;
-  buffer[index] = vga::vga_entry(c, color);
+  buffer[index] = vga_entry(c, color);
 }
 
 // Updates the hardware cursor.

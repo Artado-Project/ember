@@ -7,37 +7,43 @@
 #include <keyboard.hpp>
 #include <serial.hpp>
 
+using namespace keyboard;
+using namespace serial;
+using namespace terminal;
+using namespace timer;
+using namespace vga;
+
 extern "C" void kernel_main(void)
 {
-  serial::init();
-  serial::log("knl", "Initializing");
-  serial::log("dts", "Initializing");
+  init();
+  log("knl", "Initializing");
+  log("dts", "Initializing");
   init_descriptor_tables();
   asm volatile ("sti");
-  serial::log("tty", "Initializing");
-  terminal::initialize();
+  log("tty", "Initializing");
+  initialize();
 
   // Ember logo
-  terminal::setcolor(VGA_COLOR_LIGHT_BROWN, VGA_COLOR_BLACK);
-  terminal::print("   __ _ _ __ _   _ ___ \n"
+  setcolor(VGA_COLOR_LIGHT_BROWN, VGA_COLOR_BLACK);
+  print("   __ _ _ __ _   _ ___ \n"
                   "  / _` | '__| | | / __|\n"
                   " | (_| | |  | |_| \\__ \\ \n"
                   "  \\__,_|_|   \\__,_|___/ \n");
 
-  terminal::setcolor(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
-  terminal::print("Welcome to Arus!\n");
-  terminal::print("Version 1, Build 0.0.1\n");
-  serial::log("pit", "Initializing");
-  timer::init(100);
-  serial::log("kbd", "Initializing");
-  keyboard::init();
-  serial::log("knl", "Initialized");
-  terminal::print("> ");
+  setcolor(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
+  print("Welcome to Arus!\n");
+  print("Version 1, Build 0.0.1\n");
+  log("pit", "Initializing");
+  init(100);
+  log("kbd", "Initializing");
+  init();
+  log("knl", "Initialized");
+  print("> ");
   char theinput[25];
-  keyboard::input(24, theinput);
-  terminal::print("You said this: ");
-  terminal::print(theinput);
-  terminal::print("\nTest interrupt:\n");
+  input(24, theinput);
+  print("You said this: ");
+  print(theinput);
+  print("\nTest interrupt:\n");
   asm volatile ("int $0x13");
   for (;;){
     asm volatile("hlt");

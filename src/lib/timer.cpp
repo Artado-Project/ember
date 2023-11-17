@@ -5,6 +5,8 @@
 #include <io.hpp>
 #include <serial.hpp>
 
+using namespace serial;
+
 namespace timer
 {
 uint32_t tick = 0;
@@ -35,6 +37,6 @@ void init(uint32_t frequency)
    // Send the frequency divisor.
    outb(0x40, l);
    outb(0x40, h);
-   serial::log("pit", "Initialized");
+   log("pit", "Initialized");
 }
 } // namespace timer

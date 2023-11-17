@@ -5,6 +5,9 @@
 #include <serial.hpp>
 #include <stdbool.h>
 
+using namespace terminal;
+using namespace serial;
+
 namespace keyboard
 {
 bool ginput = false;
@@ -61,7 +64,7 @@ static void keyboard_handler(registers_t *regs)
 void init(void)
 {
    register_interrupt_handler(33, &keyboard_handler);
-   serial::log("kbd", "Initialized");
+   log("kbd", "Initialized");
 }
 
 char getchar()
@@ -85,12 +88,12 @@ void input(unsigned int input_length, char *theinput)
             if (position != 0) {
                 theinput[position] = 0;
                 position--;
-                terminal::putchar(character);
+                putchar(character);
             }
         } else if (position != last_position) {
             if (character != '\n') theinput[position] = character;
             position++;
-            terminal::putchar(character);
+            putchar(character);
         }
     }
 }
